@@ -6,16 +6,17 @@
 class Cli
 
   def call
+    scraper = Scraper.new
     welcome
-    #should list coffees 1-15
+  #   #should list coffees 1-15
     first_input
 
     input = gets.strip.to_i
     valid_input?(input)
 
-    #going to need a find coffee by name method in Coffee? that takes the users input and finds that coffee
+  #   #going to need a find coffee by name method in Coffee? that takes the users input and finds that coffee
 
-    #then we want to display that coffees info
+  #   #then we want to display that coffees info
 
   end
 

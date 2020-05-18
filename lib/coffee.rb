@@ -4,11 +4,13 @@
 # Store all of my Coffee instance data(attributes), or anything else I need it to do
 
 class Coffee
-  attr_accessor :name, :ingredients, :instructions
+  attr_accessor :name, :ingredients, :instructions, :bio
 
-  def initialize(name = nil, ingredients = nil, instructions = nil)
+  def initialize(name = nil, ingredients = nil, instructions = nil, bio = nil)
     @name = name
     @ingredints = ingredients
     @instructions = instructions
+    @bio = bio
   end
+
 end
