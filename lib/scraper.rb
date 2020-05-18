@@ -3,31 +3,38 @@
 # This file will never use puts
 
 class Scraper
-  attr_accessor :doc. :coffee
+  attr_accessor :doc
 
   def initialize
     @doc = Nokogiri::HTML(HTTParty.get("https://www.cafepoint.co.uk/different-types-of-coffee/"))
     binding.pry
   end
 
-  def get_coffees
+  # def get_coffee
+  #   doc.css(".container").each do |coffee_info|
+  #     Coffee.new(
+  #       name:
+  #       ingredients:
+  #       instructions:
+  #       bio:
+  #     )
 
-  end
+  # end
 
 end
 
 
-doc.css(".nav").first.css("a").map do |coffee|
-  coffee.text.delete("\n").delete("\u00c9")
-end
+# doc.css(".nav").first.css("a").map do |coffee|
+#   coffee.text.delete("\n").delete("\u00c9")
+# end
 
-doc.css(".instructions").map do |ingredients|
-  ingredients.children[4].text
-end
+# doc.css(".instructions").map do |ingredients|
+#   ingredients.children[4].text
+# end
 
-doc.css(".steps").map do |instructions|
-  instructions.text.delete("\n").delete("\u2019").delete("\u2013").delete("\t").delete("\u00E9").delete("\u00BD")
-end
+# doc.css(".steps").map do |instructions|
+#   instructions.text.delete("\n").delete("\u2019").delete("\u2013").delete("\t").delete("\u00E9").delete("\u00BD")
+# end
 
 
 
