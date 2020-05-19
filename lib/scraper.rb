@@ -7,6 +7,8 @@ class Scraper
 
   def initialize
     @doc = Nokogiri::HTML(HTTParty.get("https://www.cafepoint.co.uk/different-types-of-coffee/").body)
+
+    # binding.pry
   end
 
   def get_coffee
@@ -20,20 +22,15 @@ class Scraper
   def scrape_coffee(coffee)
     name = coffee.name.gsub(" ", "-")
     doc.css("section##{name} p.instructions").each do |coffee_info|
+    # binding.pry
       coffee.bio = coffee_info.next_element.text
-      binding.pry
     end
   end
-
-  # doc.css(".container") - page
-# doc.css(".nav").first.css("a").first.text.split(" ")[0] - list of 15 coffees
-# doc.css(".instructions").first.children[4].text - ingredients
-# doc.css(".steps").first.text.delete("\n").delete("\u2019").delete("\u2013") - instructions
 
 end
 
 # doc.css(".col-md-9 p.instructions").map do |bio|
-#   puts bio.next_element.text
+#   bio.next_element.text
 # end
 
 # doc.css(".nav").first.css("a").map do |coffee|

@@ -8,7 +8,6 @@ class Cli
   def call
     scraper = Scraper.new
     scraper.get_coffee
-    scraper.scrape_coffee
     welcome
     first_input
     coffee_list
@@ -19,7 +18,7 @@ class Cli
     praise
 
     coffee = lookup_coffee_by_name(input)
-
+    scraper.scrape_coffee(coffee)
     #show the user the coffee bio
 
   end
@@ -39,12 +38,11 @@ class Cli
       true
     else
       puts "Invalid choice, please pick a number bewteen 1-15!"
-      call
+      gets.strip
     end
   end
 
   def coffee_list
-    Scraper.new.get_coffee
     Coffee.all.each.with_index(1) do |coffee, i|
       puts "#{i}. #{coffee.name}"
     end
@@ -58,6 +56,10 @@ class Cli
 
   def lookup_coffee_by_name(input)
     Coffee.find_by_name(input)
+  end
+
+  def display_coffee_bio(input)
+
   end
 
 end
