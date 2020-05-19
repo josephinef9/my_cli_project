@@ -4,26 +4,24 @@
 # Store all of my Coffee instance data(attributes), or anything else I need it to do
 
 class Coffee
-  attr_accessor :name, :bio, :ingredients, :instructions
+  attr_accessor :bio
+  attr_reader :name, :id
 
   @@all = []
 
   def initialize(name:)
     @name = name
-    # @bio = bio
-    # @ingredints = ingredients
-    # @instructions = instructions
     @@all << self
+    @id = @@all.count
   end
 
   def self.all
     @@all
   end
 
-  def self.find_by_name(name)
-    binding.pry
+  def self.find_by_id(id)
     all.find do |coffee|
-      coffee.name == name
+      coffee.id == id
     end
   end
 

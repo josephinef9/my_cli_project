@@ -17,9 +17,13 @@ class Cli
 
     praise
 
-    coffee = lookup_coffee_by_name(input)
+    coffee = lookup_coffee_by_id(input)
     scraper.scrape_coffee(coffee)
-    #show the user the coffee bio
+    puts coffee.bio
+
+    continue
+
+    input1 = gets.strip
 
   end
 
@@ -43,8 +47,8 @@ class Cli
   end
 
   def coffee_list
-    Coffee.all.each.with_index(1) do |coffee, i|
-      puts "#{i}. #{coffee.name}"
+    Coffee.all.each do |coffee|
+      puts "#{coffee.id}. #{coffee.name}"
     end
   end
 
@@ -54,12 +58,13 @@ class Cli
     puts "Here is some information on that coffee!"
   end
 
-  def lookup_coffee_by_name(input)
-    Coffee.find_by_name(input)
+  def lookup_coffee_by_id(input)
+    Coffee.find_by_id(input)
   end
 
-  def display_coffee_bio(input)
-
+  def continue
+    puts "Would you like some more information on this coffee?"
+    puts "Please type yes or no!"
   end
 
 end
