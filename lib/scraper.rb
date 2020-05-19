@@ -14,7 +14,7 @@ class Scraper
   def get_coffee
     doc.css("#nav li").each do |coffee_info|
       Coffee.new(
-        name: coffee_info.text.delete("\n").gsub("\u00C9", "E")
+        name: coffee_info.text.delete("\n").gsub("\u00C9", "E").strip
       )
     end
   end

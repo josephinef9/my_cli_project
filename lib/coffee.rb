@@ -21,6 +21,7 @@ class Coffee
   end
 
   def self.find_by_name(name)
+    binding.pry
     all.find do |coffee|
       coffee.name == name
     end
