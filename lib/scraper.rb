@@ -6,20 +6,21 @@ class Scraper
   attr_accessor :doc
 
   def initialize
-    @doc = Nokogiri::HTML(HTTParty.get("https://www.cafepoint.co.uk/different-types-of-coffee/"))
-    binding.pry
+    @doc = Nokogiri::HTML(HTTParty.get("https://www.cafepoint.co.uk/different-types-of-coffee/").body)
   end
 
-  # def get_coffee
-  #   doc.css(".container").each do |coffee_info|
-  #     Coffee.new(
-  #       name:
-  #       ingredients:
-  #       instructions:
-  #       bio:
-  #     )
+  def get_coffee
+    doc.css("#nav li").each do |coffee_info|
+      Coffee.new(
+        name: coffee_info.text.delete("\n").delete(" ").delete("\u00C9")
+      )
+    end
+  end
 
-  # end
+  # doc.css(".container") - page
+# doc.css(".nav").first.css("a").first.text.split(" ")[0] - list of 15 coffees
+# doc.css(".instructions").first.children[4].text - ingredients
+# doc.css(".steps").first.text.delete("\n").delete("\u2019").delete("\u2013") - instructions
 
 end
 
@@ -37,11 +38,4 @@ end
 # end
 
 
-
-
-
-# doc.css(".container") - page
-# doc.css(".nav").first.css("a").first.text.split(" ")[0] - list of 15 coffees
-# doc.css(".instructions").first.children[4].text - ingredients
-# doc.css(".steps").first.text.delete("\n").delete("\u2019").delete("\u2013") - instructions
 # doc.css("#FRAPPUCCINO").first.css("p")[1].text.gsub("\u2019", "'") - bio

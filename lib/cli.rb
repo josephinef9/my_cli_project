@@ -6,10 +6,11 @@
 class Cli
 
   def call
-    scraper = Scraper.new
+    # scraper = Scraper.new
+    # scraper.get_coffee
     welcome
-  #   #should list coffees 1-15
     first_input
+    coffee_list
 
     input = gets.strip.to_i
     valid_input?(input)
@@ -34,6 +35,13 @@ class Cli
     else
       puts "Invalid choice, please pick a number bewteen 1-15!"
       call
+    end
+  end
+
+  def coffee_list
+    Scraper.new.get_coffee
+    Coffee.all.each.with_index(1) do |coffee, i|
+      puts "#{i}. #{coffee.name}"
     end
   end
 
