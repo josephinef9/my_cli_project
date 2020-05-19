@@ -12,8 +12,16 @@ class Scraper
   def get_coffee
     doc.css("#nav li").each do |coffee_info|
       Coffee.new(
-        name: coffee_info.text.delete("\n").delete(" ").delete("\u00C9")
+        name: coffee_info.text.delete("\n").gsub("\u00C9", "E")
       )
+    end
+  end
+
+  def scrape_coffee(coffee)
+    name = coffee.name.gsub(" ", "-")
+    doc.css("section##{name} p.instructions").each do |coffee_info|
+      coffee.bio = coffee_info.next_element.text
+      binding.pry
     end
   end
 
@@ -24,6 +32,9 @@ class Scraper
 
 end
 
+# doc.css(".col-md-9 p.instructions").map do |bio|
+#   puts bio.next_element.text
+# end
 
 # doc.css(".nav").first.css("a").map do |coffee|
 #   coffee.text.delete("\n").delete("\u00c9")
@@ -39,3 +50,5 @@ end
 
 
 # doc.css("#FRAPPUCCINO").first.css("p")[1].text.gsub("\u2019", "'") - bio
+
+# doc.css(".col-md-9").css("p")[1]
