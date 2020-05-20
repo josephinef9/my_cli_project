@@ -11,5 +11,8 @@ This project will scrape the 15 Coffees To Try Before You Die webpage. When the 
 
 # Navigation
 1. Type in `ruby bin/movielist.rb` to initiate the CLI.
-2. Once the terminal outputs the list of coffees, make a selection from 1 to 15 to print out basic information about the coffe you selected.
-3. You will be prompted to type in yes or no in the terminal to either choose another coffee or leave the program. If you type in yes, you will be redirected back to the list of coffees so that you can choose again. But if you type in no, the program will output a goodbye message.
+2. Once the terminal outputs the list of coffees, you will be prompted to make a selection from 1 to 15.
+3. The CLI will print out basic information about the coffe you selected.
+4. After you are done reading about the coffee you selected, you will be prompted to type yes or no into the terminal to either choose another coffee or leave the program.
+- If you type in yes, you will be redirected back to the list of coffees so that you can choose again.
+- If you type in no, the program will output a goodbye message.
