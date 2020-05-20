@@ -6,16 +6,16 @@
 class Cli
   attr_reader :scraper
 
-  SLEEP_TIME = 0
+  SLEEP_TIME = 1
 
   def call
     @scraper = Scraper.new
     scraper.get_coffee
     welcome
-    finish_call
+    next_call
   end
 
-  def finish_call
+  def next_call
     first_input
     coffee_list
 
@@ -45,7 +45,7 @@ class Cli
       true
     else
       puts "Invalid choice, please pick a number bewteen 1-15!".colorize(:red)
-      finish_call
+      next_call
     end
   end
 
@@ -67,15 +67,16 @@ class Cli
   def display_coffee_info(coffee)
     puts "You selected #{coffee.name}. Here is some info:".colorize(:green)
     sleep(SLEEP_TIME)
-    puts coffee.bio.to_s
+    puts coffee.bio
     sleep(SLEEP_TIME)
     puts "Here are the ingredients needed to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
-    puts coffee.ingredients.to_s
+    puts coffee.ingredients
     sleep(SLEEP_TIME)
     puts "Here are the instructions to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
-    puts coffee.steps.to_s
+    puts coffee.steps
+    sleep(SLEEP_TIME)
     continue
   end
 
@@ -89,7 +90,7 @@ class Cli
   def choose_again
     input = gets.strip
     if input == "yes"
-      finish_call
+      next_call
     elsif input == "no"
       exit_commands
       sleep(SLEEP_TIME)

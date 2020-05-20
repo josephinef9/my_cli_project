@@ -16,7 +16,7 @@ class Coffee
   end
 
   def self.all
-    @@all.uniq { |coffee| coffee.name }
+    @@all
   end
 
   def self.find_by_id(id)
