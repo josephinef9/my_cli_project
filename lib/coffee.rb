@@ -4,7 +4,7 @@
 # Store all of my Coffee instance data(attributes), or anything else I need it to do
 
 class Coffee
-  attr_accessor :bio, :ingredients
+  attr_accessor :bio, :ingredients, :steps
   attr_reader :name, :id
 
   @@all = []
@@ -16,7 +16,7 @@ class Coffee
   end
 
   def self.all
-    @@all
+    @@all.uniq { |coffee| coffee.name }
   end
 
   def self.find_by_id(id)

@@ -18,6 +18,7 @@ class Cli
 
     coffee = lookup_coffee_by_id(input)
     scraper.scrape_coffee(coffee)
+    scraper.scrape_more_info(coffee)
     display_coffee_info(coffee)
     choose_again
   end
@@ -66,6 +67,9 @@ class Cli
     sleep(1)
     puts "#{coffee.ingredients}"
     sleep(1)
+    puts "Here are the instructions to make this coffee:"
+    sleep(1)
+    puts "#{coffee.steps}"
     continue
   end
 

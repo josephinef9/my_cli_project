@@ -25,8 +25,10 @@ class Scraper
     end
   end
 
+  def scrape_more_info(coffee)
+    name = coffee.name.gsub(" ", "-")
+    doc.css("section##{name} ul.steps").each do |coffee_info|
+      coffee.steps = coffee_info.children.text.delete("\n")
+    end
+  end
 end
-
-# doc.css(".steps").map do |instructions|
-#   instructions.text.delete("\n").delete("\u2019").delete("\u2013").delete("\t").delete("\u00E9").delete("\u00BD")
-# end
