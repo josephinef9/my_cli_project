@@ -20,17 +20,16 @@ class Cli
     scraper.scrape_coffee(coffee)
     scraper.scrape_more_info(coffee)
     display_coffee_info(coffee)
-    choose_again
   end
 
   def welcome
-    puts "Hello coffee lover!"
+    puts "Hello coffee lover!".colorize(:light_blue)
     sleep(1)
     first_input
   end
 
   def first_input
-    puts "Please choose a coffee between 1-15!"
+    puts "Please choose a coffee between 1-15!".colorize(:light_blue)
     sleep(1)
   end
 
@@ -38,7 +37,7 @@ class Cli
     if input >= 1 && input <= 15
       true
     else
-      puts "Invalid choice, please pick a number bewteen 1-15!"
+      puts "Invalid choice, please pick a number bewteen 1-15!".colorize(:red)
       call
     end
   end
@@ -50,7 +49,7 @@ class Cli
   end
 
   def praise
-    puts "Great choice!"
+    puts "Great choice!".colorize(:light_blue)
     sleep(1)
   end
 
@@ -59,40 +58,43 @@ class Cli
   end
 
   def display_coffee_info(coffee)
-    puts "You selected #{coffee.name}. Here is some information on that coffee!"
+    puts "You selected #{coffee.name}. Here is some information on that coffee!".colorize(:green)
     sleep(1)
-    puts "#{coffee.bio}"
+    puts coffee.bio.to_s
     sleep(1)
-    puts "Here are the ingredients needed to make this coffee:"
+    puts "Here are the ingredients needed to make this coffee:".colorize(:green)
     sleep(1)
-    puts "#{coffee.ingredients}"
+    puts coffee.ingredients.to_s
     sleep(1)
-    puts "Here are the instructions to make this coffee:"
+    puts "Here are the instructions to make this coffee:".colorize(:green)
     sleep(1)
-    puts "#{coffee.steps}"
+    puts coffee.steps.to_s
     continue
   end
 
   def continue
-    puts "Would you like to pick another coffee?"
+    puts "Would you like to pick another coffee?".colorize(:light_blue)
     sleep(1)
-    puts "Please type 'yes' or 'no'"
+    puts "Please type 'yes' or 'no'".colorize(:light_blue)
+    choose_again
   end
 
   def choose_again
     input = gets.strip
     if input == "yes"
       call
-    else input == "no"
+    elsif input == "no"
       exit_commands
       sleep(1)
+    else
+      puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
+      continue
     end
   end
 
   def exit_commands
-    puts "It has been a pleasure to learn about coffee with you!"
+    puts "It has been a pleasure to learn about coffee with you!".colorize(:light_blue)
     sleep(1)
-    puts "Make sure to keep coming back until you've tried all 15 coffees!"
+    puts "Make sure to keep coming back until you've tried all 15 coffees!".colorize(:light_blue)
   end
-
 end
