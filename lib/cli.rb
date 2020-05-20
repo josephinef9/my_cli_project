@@ -19,6 +19,7 @@ class Cli
     coffee = lookup_coffee_by_id(input)
     scraper.scrape_coffee(coffee)
     display_coffee_info(coffee)
+    choose_again
   end
 
   def welcome
@@ -57,13 +58,37 @@ class Cli
   end
 
   def display_coffee_info(coffee)
-    puts "You have selected #{coffee.name}. Here is some information on that coffee!"
+    puts "You selected #{coffee.name}. Here is some information on that coffee!"
     sleep(1)
     puts "#{coffee.bio}"
     sleep(1)
     puts "Here are the ingredients needed to make this coffee:"
     sleep(1)
     puts "#{coffee.ingredients}"
+    sleep(1)
+    continue
+  end
+
+  def continue
+    puts "Would you like to pick another coffee?"
+    sleep(1)
+    puts "Please type 'yes' or 'no'"
+  end
+
+  def choose_again
+    input = gets.strip
+    if input == "yes"
+      call
+    else input == "no"
+      exit_commands
+      sleep(1)
+    end
+  end
+
+  def exit_commands
+    puts "It has been a pleasure to learn about coffee with you!"
+    sleep(1)
+    puts "Make sure to keep coming back until you've tried all 15 coffees!"
   end
 
 end
