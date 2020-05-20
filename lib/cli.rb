@@ -20,10 +20,10 @@ class Cli
     coffee = lookup_coffee_by_id(input)
     scraper.scrape_coffee(coffee)
     puts coffee.bio
+    puts "Here are the ingredients:"
+    puts coffee.ingredients
 
     continue
-
-    input1 = gets.strip
 
   end
 
