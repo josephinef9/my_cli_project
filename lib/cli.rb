@@ -4,11 +4,19 @@
 # This will invoke the scaper class
 
 class Cli
+  attr_reader :scraper
+
+  SLEEP_TIME = 0
 
   def call
-    scraper = Scraper.new
+    @scraper = Scraper.new
     scraper.get_coffee
     welcome
+    finish_call
+  end
+
+  def finish_call
+    first_input
     coffee_list
 
     input = gets.strip.to_i
@@ -24,13 +32,12 @@ class Cli
 
   def welcome
     puts "Hello coffee lover!".colorize(:light_blue)
-    sleep(1)
-    first_input
+    sleep(SLEEP_TIME)
   end
 
   def first_input
     puts "Please choose a coffee between 1-15!".colorize(:light_blue)
-    sleep(1)
+    sleep(SLEEP_TIME)
   end
 
   def valid_input?(input)
@@ -38,7 +45,7 @@ class Cli
       true
     else
       puts "Invalid choice, please pick a number bewteen 1-15!".colorize(:red)
-      call
+      finish_call
     end
   end
 
@@ -59,22 +66,22 @@ class Cli
 
   def display_coffee_info(coffee)
     puts "You selected #{coffee.name}. Here is some info:".colorize(:green)
-    sleep(1)
+    sleep(SLEEP_TIME)
     puts coffee.bio.to_s
-    sleep(1)
+    sleep(SLEEP_TIME)
     puts "Here are the ingredients needed to make this coffee:".colorize(:green)
-    sleep(1)
+    sleep(SLEEP_TIME)
     puts coffee.ingredients.to_s
-    sleep(1)
+    sleep(SLEEP_TIME)
     puts "Here are the instructions to make this coffee:".colorize(:green)
-    sleep(1)
+    sleep(SLEEP_TIME)
     puts coffee.steps.to_s
     continue
   end
 
   def continue
     puts "Would you like to pick another coffee?".colorize(:light_blue)
-    sleep(1)
+    sleep(SLEEP_TIME)
     puts "Please type 'yes' or 'no'".colorize(:light_blue)
     choose_again
   end
@@ -82,10 +89,10 @@ class Cli
   def choose_again
     input = gets.strip
     if input == "yes"
-      call
+      finish_call
     elsif input == "no"
       exit_commands
-      sleep(1)
+      sleep(SLEEP_TIME)
     else
       puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
       continue
@@ -93,8 +100,8 @@ class Cli
   end
 
   def exit_commands
-    puts "It has been a pleasure to learn about coffee with you!".colorize(:light_blue)
-    sleep(1)
-    puts "Make sure to keep coming back until you've tried all 15 coffees!".colorize(:light_blue)
+    puts "It's been so fun to learn about coffee with you!".colorize(:blue)
+    sleep(SLEEP_TIME)
+    puts "Keep coming back until you've tried all 15 coffees!".colorize(:blue)
   end
 end
