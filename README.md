@@ -1,9 +1,7 @@
 # 15 Coffees To Try Before You Die
 
-## Objectives
-Use Nokogiri to scrape articles about current trends posted by Vogue.
-Use scraped data to create a CLI where the user can see a list of current articles.
-Give user option to select one of the articles and get an abstract to know what it's about.
-User can click on the link assocaited with the article to open the web page for the full article, or select a different aricle.
-
-Going to scrape the 15 Types of Coffee to Try Before you Die Website.
+# Objectives
+Use Nokogiri to scrape a website titled "15 Coffees To Try Before You Die".
+Use scraped data to create a CLI where the user can see a list of those 15 coffees.
+Give user an option to select one of the coffees and get information about the coffee they selected.
+Give user an option to choose another coffee after they are done learning about the previous one.
