@@ -58,7 +58,7 @@ class Cli
   end
 
   def display_coffee_info(coffee)
-    puts "You selected #{coffee.name}. Here is some information on that coffee!".colorize(:green)
+    puts "You selected #{coffee.name}. Here is some info:".colorize(:green)
     sleep(1)
     puts coffee.bio.to_s
     sleep(1)
