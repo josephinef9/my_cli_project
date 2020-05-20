@@ -20,7 +20,6 @@ class Scraper
   def scrape_coffee(coffee)
     name = coffee.name.gsub(" ", "-")
     doc.css("section##{name} p.instructions").each do |coffee_info|
-    binding.pry
       coffee.bio = coffee_info.next_element.text
       coffee.ingredients = coffee_info.children[4].text.strip
     end

@@ -9,7 +9,6 @@ class Cli
     scraper = Scraper.new
     scraper.get_coffee
     welcome
-    first_input
     coffee_list
 
     input = gets.strip.to_i
@@ -19,17 +18,13 @@ class Cli
 
     coffee = lookup_coffee_by_id(input)
     scraper.scrape_coffee(coffee)
-    puts coffee.bio
-    puts "Here are the ingredients:"
-    puts coffee.ingredients
-
-    continue
-
+    display_coffee_info(coffee)
   end
 
   def welcome
     puts "Hello coffee lover!"
     sleep(1)
+    first_input
   end
 
   def first_input
@@ -42,7 +37,7 @@ class Cli
       true
     else
       puts "Invalid choice, please pick a number bewteen 1-15!"
-      gets.strip
+      call
     end
   end
 
@@ -55,16 +50,20 @@ class Cli
   def praise
     puts "Great choice!"
     sleep(1)
-    puts "Here is some information on that coffee!"
   end
 
   def lookup_coffee_by_id(input)
     Coffee.find_by_id(input)
   end
 
-  def continue
-    puts "Would you like some more information on this coffee?"
-    puts "Please type yes or no!"
+  def display_coffee_info(coffee)
+    puts "You have selected #{coffee.name}. Here is some information on that coffee!"
+    sleep(1)
+    puts "#{coffee.bio}"
+    sleep(1)
+    puts "Here are the ingredients needed to make this coffee:"
+    sleep(1)
+    puts "#{coffee.ingredients}"
   end
 
 end
