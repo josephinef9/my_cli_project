@@ -19,4 +19,8 @@ class Coffee
       coffee.id == id
     end
   end
+
+  def slug
+    name.tr(" ", "-")
+  end
 end

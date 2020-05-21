@@ -26,12 +26,12 @@ class Cli
   end
 
   def welcome
-    puts "Hello coffee lover!".colorize(:light_blue)
+    puts_blue "Hello coffee lover!"
     sleep(SLEEP_TIME)
   end
 
   def first_input
-    puts "Please choose a coffee between 1-15!".colorize(:light_blue)
+    puts_blue "Please choose a coffee between 1-15!"
     sleep(SLEEP_TIME)
   end
 
@@ -51,7 +51,7 @@ class Cli
   end
 
   def praise
-    puts "Great choice!".colorize(:light_blue)
+    puts_blue "Great choice!"
     sleep(1)
   end
 
@@ -85,13 +85,14 @@ class Cli
     puts "Here are the instructions to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
     puts coffee.steps
+    puts ""
   end
 
   def continue
-    puts "Would you like to pick another coffee?".colorize(:light_blue)
+    puts_blue "Would you like to pick another coffee?"
     sleep(SLEEP_TIME)
-    puts "Please type 'yes' to pick another coffee".colorize(:light_blue)
-    puts "Please type 'no' to exit the program".colorize(:light_blue)
+    puts_blue "Please type 'yes' to pick another coffee"
+    puts_blue "Please type 'no' to exit the program"
     choose_again
   end
 
@@ -109,9 +110,14 @@ class Cli
   end
 
   def exit_commands
-    puts "It's been so fun to learn about coffee with you!".colorize(:light_blue)
+    puts_blue "It's been so fun to learn about coffee with you!"
     sleep(SLEEP_TIME)
-    puts "Keep coming back until you've tried all 15 coffees!".colorize(:light_blue)
+    puts_blue "Keep coming back until you've tried all 15 coffees!"
     exit
   end
+
+  def puts_blue(string)
+    puts string.colorize(:light_blue)
+  end
+
 end
