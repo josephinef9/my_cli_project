@@ -1,0 +1,2 @@
+class GoogleScrape
+end

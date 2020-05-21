@@ -119,5 +119,4 @@ class Cli
   def puts_blue(string)
     puts string.colorize(:light_blue)
   end
-
 end
