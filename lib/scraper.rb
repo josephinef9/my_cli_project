@@ -9,7 +9,7 @@ class Scraper
     @doc = Nokogiri::HTML(HTTParty.get("https://www.cafepoint.co.uk/different-types-of-coffee/").body)
   end
 
-  def get_coffee
+  def coffee_names
     doc.css("#nav li").each do |coffee_info|
       Coffee.new(
         name: coffee_info.text.delete("\n").tr("\u00C9", "E").strip
@@ -32,4 +32,3 @@ class Scraper
     end
   end
 end
-

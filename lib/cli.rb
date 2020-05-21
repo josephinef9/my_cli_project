@@ -10,7 +10,7 @@ class Cli
 
   def call
     @scraper = Scraper.new
-    scraper.get_coffee
+    scraper.coffee_names
     welcome
     next_call
   end
@@ -65,25 +65,38 @@ class Cli
   end
 
   def display_coffee_info(coffee)
-    puts "You selected #{coffee.name}. Here is some info:".colorize(:green)
-    sleep(SLEEP_TIME)
+    coffee_name(coffee)
     puts coffee.bio
     sleep(SLEEP_TIME)
+    coffee_ingredients(coffee)
+    sleep(SLEEP_TIME)
+    coffee_instructions(coffee)
+    sleep(SLEEP_TIME)
+    continue
+  end
+
+  def coffee_name(coffee)
+    puts "You selected #{coffee.name}. Here is some info:".colorize(:green)
+    sleep(SLEEP_TIME)
+  end
+
+  def coffee_ingredients(coffee)
     puts "Here are the ingredients needed to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
     puts coffee.ingredients
-    sleep(SLEEP_TIME)
+  end
+
+  def coffee_instructions(coffee)
     puts "Here are the instructions to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
     puts coffee.steps
-    sleep(SLEEP_TIME)
-    continue
   end
 
   def continue
     puts "Would you like to pick another coffee?".colorize(:light_blue)
     sleep(SLEEP_TIME)
-    puts "Please type 'yes' or 'no'".colorize(:light_blue)
+    puts "Please type 'yes' to pick another coffee".colorize(:light_blue)
+    puts "Please type 'no' to exit the program".colorize(:light_blue)
     choose_again
   end
 
@@ -101,8 +114,9 @@ class Cli
   end
 
   def exit_commands
-    puts "It's been so fun to learn about coffee with you!".colorize(:blue)
+    puts "It's been so fun to learn about coffee with you!".colorize(:light_blue)
     sleep(SLEEP_TIME)
-    puts "Keep coming back until you've tried all 15 coffees!".colorize(:blue)
+    puts "Keep coming back until you've tried all 15 coffees!".colorize(:light_blue)
+    exit
   end
 end

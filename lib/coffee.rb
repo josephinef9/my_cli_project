@@ -24,5 +24,4 @@ class Coffee
       coffee.id == id
     end
   end
-
 end
