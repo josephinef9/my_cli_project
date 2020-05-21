@@ -69,7 +69,8 @@ class Cli
     coffee_instructions(coffee)
     sleep(SLEEP_TIME)
     GoogleScraper.new(coffee).more_info
-    continue
+    keep_learning
+    valid?
   end
 
   def coffee_name(coffee)
@@ -90,26 +91,26 @@ class Cli
     puts ""
   end
 
-  def continue
-    puts_blue "Would you like to pick another coffee?"
-    sleep(SLEEP_TIME)
-    puts_blue "Please type 'yes' to pick another coffee"
-    puts_blue "Please type 'no' to exit the program"
-    choose_again
-  end
+  # def continue
+  #   puts_blue "Would you like to pick another coffee?"
+  #   sleep(SLEEP_TIME)
+  #   puts_blue "Please type 'yes' to pick another coffee"
+  #   puts_blue "Please type 'no' to exit the program"
+  #   choose_again
+  # end
 
-  def choose_again
-    input = gets.strip
-    if input == "yes"
-      next_call
-    elsif input == "no"
-      exit_commands
-      sleep(SLEEP_TIME)
-    else
-      puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
-      continue
-    end
-  end
+  # def choose_again
+  #   input = gets.strip
+  #   if input == "yes"
+  #     next_call
+  #   elsif input == "no"
+  #     exit_commands
+  #     sleep(SLEEP_TIME)
+  #   else
+  #     puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
+  #     continue
+  #   end
+  # end
 
   def exit_commands
     puts_blue "It's been so fun to learn about coffee with you!"
@@ -121,4 +122,26 @@ class Cli
   def puts_blue(string)
     puts string.colorize(:light_blue)
   end
+
+  def keep_learning
+    puts_blue "Would you like to learn more about this coffee?"
+    puts_blue "Type 'yes' to learn more."
+    puts_blue "Type 'no' to pick another coffee"
+    puts_blue "Type 'exit' to leave the program"
+  end
+
+  def valid?
+    input = gets.strip
+    if input == "yes"
+      GoogleScraper.new(coffee).more_info
+    elsif input == "no"
+      next_call
+    elsif input == "exit"
+      exit_commands
+    else
+      puts "Invalid command, please type 'yes', 'no' or 'exit'".colorize(:red)
+      keep_learning
+    end
+  end
+
 end
