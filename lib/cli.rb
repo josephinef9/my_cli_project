@@ -1,7 +1,7 @@
 class Cli
-  attr_reader :scraper
+  attr_reader :scraper, :coffee
 
-  SLEEP_TIME = 1
+  SLEEP_TIME = 0
 
   def call
     @scraper = Scraper.new
@@ -20,6 +20,7 @@ class Cli
     praise
 
     coffee = lookup_coffee_by_id(input)
+    GoogleScraper.new(coffee)
     scraper.scrape_coffee(coffee)
     scraper.scrape_more_info(coffee)
     display_coffee_info(coffee)
@@ -67,6 +68,7 @@ class Cli
     sleep(SLEEP_TIME)
     coffee_instructions(coffee)
     sleep(SLEEP_TIME)
+    GoogleScraper.new(coffee).more_info
     continue
   end
 
