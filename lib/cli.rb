@@ -89,7 +89,7 @@ class Cli
     elsif input == "no" then next_call
     elsif input == "exit" then Interface.exit_commands
     else
-      Interface.puts_red "Invalid command, please type 'yes', 'no' or 'exit'"
+      Interface.puts_red "Invalid command, type 'yes', 'no' or 'exit'".bold
       Interface.keep_learning
       valid?
     end
