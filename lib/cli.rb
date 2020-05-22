@@ -2,7 +2,7 @@ class Cli
   attr_reader :scraper, :coffee
   attr_writer :coffee
 
-  SLEEP_TIME = 0
+  SLEEP_TIME = 1
 
   def call
     @scraper = Scraper.new
@@ -105,7 +105,6 @@ class Cli
       puts ""
       puts "Sorry Google doesn't like this coffee"
       puts "This coffee must not be too good"
-      puts ""
     end
   end
 
