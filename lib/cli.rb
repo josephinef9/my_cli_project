@@ -2,7 +2,7 @@ class Cli
   attr_reader :scraper, :coffee
   attr_writer :coffee
 
-  SLEEP_TIME = 1
+  SLEEP_TIME = 0
 
   def call
     @scraper = Scraper.new
@@ -21,10 +21,14 @@ class Cli
     praise
 
     self.coffee = lookup_coffee_by_id(input)
+    scrape_coffees
+    display_coffee_info
+  end
+
+  def scrape_coffees
     GoogleScraper.new(coffee)
     scraper.scrape_coffee(coffee)
     scraper.scrape_more_info(coffee)
-    display_coffee_info
   end
 
   def welcome
@@ -101,11 +105,8 @@ class Cli
 
   def choose_again
     input = gets.strip
-    if input == "yes"
-      next_call
-    elsif input == "no"
-      exit_commands
-      sleep(SLEEP_TIME)
+    if input == "yes" then next_call
+    elsif input == "no" then exit_commands
     else
       puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
       continue
@@ -133,17 +134,9 @@ class Cli
   def valid?
     input = gets.strip
     if input == "yes"
-      puts ""
-      puts_blue "Here is what Google has to say about this coffee:"
-      GoogleScraper.new(coffee).more_info
-      puts coffee.additional_info
-      puts ""
-      continue
-      choose_again
-    elsif input == "no"
-      next_call
-    elsif input == "exit"
-      exit_commands
+      second_choice
+    elsif input == "no" then next_call
+    elsif input == "exit" then exit_commands
     else
       puts "Invalid command, please type 'yes', 'no' or 'exit'".colorize(:red)
       keep_learning
@@ -151,4 +144,22 @@ class Cli
     end
   end
 
+  def google_info
+    puts ""
+    puts_blue "Here is what Google has to say about this coffee:"
+    GoogleScraper.new(coffee).more_info
+    if coffee.additional_info.any?
+      puts coffee.additional_info
+    else
+      puts "Sorry Google doesn't like this coffee"
+      puts "This coffee must not be too good"
+      puts ""
+    end
+  end
+
+  def second_choice
+    google_info
+    continue
+    choose_again
+  end
 end
