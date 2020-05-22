@@ -100,19 +100,6 @@ class Cli
   #   choose_again
   # end
 
-  # def choose_again
-  #   input = gets.strip
-  #   if input == "yes"
-  #     next_call
-  #   elsif input == "no"
-  #     exit_commands
-  #     sleep(SLEEP_TIME)
-  #   else
-  #     puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
-  #     continue
-  #   end
-  # end
-
   def exit_commands
     puts_blue "It's been so fun to learn about coffee with you!"
     sleep(SLEEP_TIME)
@@ -135,7 +122,8 @@ class Cli
     input = gets.strip
     if input == "yes"
       GoogleScraper.new(coffee).more_info
-      puts "Thanks for learning with me!"
+      puts coffee.additional_info
+      puts_blue "Thanks for learning with me!"
     elsif input == "no"
       next_call
     elsif input == "exit"
