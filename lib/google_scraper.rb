@@ -13,9 +13,7 @@ class GoogleScraper
   end
 
   def more_info
-    additional_info = page.css("#main .ZINbbc .vbShOe").children.map do |el|
-      el.text
-    end
+    additional_info = page.css("#main .ZINbbc .vbShOe").children.map(&:text)
     coffee.additional_info = additional_info
   end
 end
