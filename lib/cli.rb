@@ -1,5 +1,6 @@
 class Cli
   attr_reader :scraper, :coffee
+  attr_writer :coffee
 
   SLEEP_TIME = 0
 
@@ -19,11 +20,11 @@ class Cli
 
     praise
 
-    coffee = lookup_coffee_by_id(input)
+    self.coffee = lookup_coffee_by_id(input)
     GoogleScraper.new(coffee)
     scraper.scrape_coffee(coffee)
     scraper.scrape_more_info(coffee)
-    display_coffee_info(coffee)
+    display_coffee_info
   end
 
   def welcome
@@ -60,31 +61,31 @@ class Cli
     Coffee.find_by_id(input)
   end
 
-  def display_coffee_info(coffee)
-    coffee_name(coffee)
+  def display_coffee_info
+    coffee_name
     puts coffee.bio
     sleep(SLEEP_TIME)
-    coffee_ingredients(coffee)
+    coffee_ingredients
     sleep(SLEEP_TIME)
-    coffee_instructions(coffee)
+    coffee_instructions
     sleep(SLEEP_TIME)
-    GoogleScraper.new(coffee).more_info
+    # GoogleScraper.new(coffee).more_info
     keep_learning
     valid?
   end
 
-  def coffee_name(coffee)
+  def coffee_name
     puts "You selected #{coffee.name}. Here is some info:".colorize(:green)
     sleep(SLEEP_TIME)
   end
 
-  def coffee_ingredients(coffee)
+  def coffee_ingredients
     puts "Here are the ingredients needed to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
     puts coffee.ingredients
   end
 
-  def coffee_instructions(coffee)
+  def coffee_instructions
     puts "Here are the instructions to make this coffee:".colorize(:green)
     sleep(SLEEP_TIME)
     puts coffee.steps
@@ -134,6 +135,7 @@ class Cli
     input = gets.strip
     if input == "yes"
       GoogleScraper.new(coffee).more_info
+      puts "Thanks for learning with me!"
     elsif input == "no"
       next_call
     elsif input == "exit"
@@ -141,6 +143,7 @@ class Cli
     else
       puts "Invalid command, please type 'yes', 'no' or 'exit'".colorize(:red)
       keep_learning
+      valid?
     end
   end
 
