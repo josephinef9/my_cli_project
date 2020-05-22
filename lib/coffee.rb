@@ -1,5 +1,5 @@
 class Coffee
-  attr_accessor :bio, :ingredients, :steps
+  attr_accessor :bio, :ingredients, :steps, :additional_info
   attr_reader :name, :id
 
   @@all = []
