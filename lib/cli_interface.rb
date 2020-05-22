@@ -2,33 +2,34 @@ class Interface
   class << self
     SLEEP_TIME = 1
     def welcome
-      puts_blue "Hello coffee lover!"
+      puts_blue "Hello coffee lover!".bold
     end
 
     def first_input
-      puts_blue "Please choose a coffee between 1-15!"
+      puts_blue "Please choose a coffee between 1-15!".bold
       sleep(SLEEP_TIME)
     end
 
     def praise
-      puts_blue "Great choice!"
+      puts_blue "Great choice!".bold
       sleep(SLEEP_TIME)
     end
 
     def keep_learning
-      puts_blue "Would you like to learn more about this coffee?"
+      puts_blue "Would you like to learn more about this coffee?".bold
       sleep(SLEEP_TIME)
-      puts_blue "Type 'yes' to learn more."
+      puts_blue "Type 'yes' to learn more.".bold
       sleep(SLEEP_TIME)
-      puts_blue "Type 'no' to pick another coffee"
+      puts_blue "Type 'no' to pick another coffee".bold
       sleep(SLEEP_TIME)
-      puts_blue "Type 'exit' to leave the program"
+      puts_blue "Type 'exit' to leave the program".bold
     end
 
     def exit_commands
-      puts_blue "It's been so fun to learn about coffee with you!"
+      puts ""
+      puts_blue "It's been so fun to learn about coffee with you!".bold
       sleep(SLEEP_TIME)
-      puts_blue "Keep coming back until you've tried all 15 coffees!"
+      puts_blue "Keep coming back until you've tried all 15 coffees!".bold
       exit
     end
 
@@ -45,11 +46,11 @@ class Interface
     end
 
     def continue
-      puts_blue "Would you like to pick another coffee?"
+      puts_blue "Would you like to pick another coffee?".bold
       sleep(SLEEP_TIME)
-      puts_blue "Please type 'yes' to pick another coffee"
+      puts_blue "Please type 'yes' to pick another coffee".bold
       sleep(SLEEP_TIME)
-      puts_blue "Please type 'no' to exit the program"
+      puts_blue "Please type 'no' to exit the program".bold
       choose_again
     end
 
@@ -60,7 +61,7 @@ class Interface
       if input == "no"
         exit_commands
       else
-        puts_red "Invalid command, please type 'yes' or 'no'"
+        puts_red "Invalid command, please type 'yes' or 'no'".bold
         continue
       end
     end

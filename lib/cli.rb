@@ -37,14 +37,14 @@ class Cli
     if input >= 1 && input <= 15
       true
     else
-      Interface.puts_red "Invalid choice, please pick a number bewteen 1-15!"
+      Interface.puts_red "Invalid choice, pick a number bewteen 1-15!".bold
       next_call
     end
   end
 
   def coffee_list
     Coffee.all.each do |coffee|
-      puts "#{coffee.id}. #{coffee.name}".bold
+      puts "#{coffee.id}. #{coffee.name}"
     end
   end
 
@@ -65,18 +65,18 @@ class Cli
   end
 
   def coffee_name
-    Interface.puts_green "You selected #{coffee.name}. Here is some info:"
+    Interface.puts_green "You selected #{coffee.name}. Here is some info:".bold
     sleep(SLEEP_TIME)
   end
 
   def coffee_ingredients
-    Interface.puts_green "Here are the ingredients needed to make this coffee:"
+    Interface.puts_green "Here are the ingredients needed for this coffee:".bold
     sleep(SLEEP_TIME)
     puts coffee.ingredients
   end
 
   def coffee_instructions
-    Interface.puts_green "Here are the instructions to make this coffee:"
+    Interface.puts_green "Here are the instructions to make this coffee:".bold
     sleep(SLEEP_TIME)
     puts coffee.steps
     puts ""
@@ -102,14 +102,15 @@ class Cli
     if coffee.additional_info.any?
       puts coffee.additional_info
     else
-      puts ""
-      puts "Sorry Google doesn't like this coffee"
+      puts "\nSorry Google doesn't like this coffee"
       puts "This coffee must not be too good"
+      puts ""
     end
   end
 
   def second_choice
     google_info
+    puts ""
     next_call if Interface.continue == false
     Interface.choose_again
   end
