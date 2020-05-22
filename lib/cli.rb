@@ -44,7 +44,7 @@ class Cli
 
   def coffee_list
     Coffee.all.each do |coffee|
-      puts "#{coffee.id}. #{coffee.name}"
+      puts "#{coffee.id}. #{coffee.name}".bold
     end
   end
 
