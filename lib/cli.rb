@@ -2,7 +2,7 @@ class Cli
   attr_reader :scraper, :coffee
   attr_writer :coffee
 
-  SLEEP_TIME = 1
+  SLEEP_TIME = 0
 
   def call
     @scraper = Scraper.new
@@ -110,7 +110,7 @@ class Cli
 
   def second_choice
     google_info
-    Interface.continue
+    next_call if Interface.continue == false
     Interface.choose_again
   end
 end

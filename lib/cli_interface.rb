@@ -1,6 +1,6 @@
 class Interface
   class << self
-    SLEEP_TIME = 1
+    SLEEP_TIME = 0
     def welcome
       puts_blue "Hello coffee lover!"
     end
@@ -55,10 +55,12 @@ class Interface
 
     def choose_again
       input = gets.strip
-      if input == "yes" then next_call
-      elsif input == "no" then Interface.exit_commands
+      return false if input == "yes"
+
+      if input == "no"
+        exit_commands
       else
-        puts "Invalid command, please type 'yes' or 'no'".colorize(:red)
+        puts_red "Invalid command, please type 'yes' or 'no'"
         continue
       end
     end
