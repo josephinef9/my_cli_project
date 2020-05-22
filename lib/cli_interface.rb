@@ -1,6 +1,6 @@
 class Interface
   class << self
-    SLEEP_TIME = 0
+    SLEEP_TIME = 1
     def welcome
       puts_blue "Hello coffee lover!"
     end

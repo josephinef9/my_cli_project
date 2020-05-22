@@ -102,6 +102,7 @@ class Cli
     if coffee.additional_info.any?
       puts coffee.additional_info
     else
+      puts ""
       puts "Sorry Google doesn't like this coffee"
       puts "This coffee must not be too good"
       puts ""
